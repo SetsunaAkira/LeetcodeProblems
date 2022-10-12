@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Leetcode
 {
-    internal class Test
+    internal class Arrays
     {
         #region FIND THE MAX CONSECUTIVE ONES IN AN ARRAY
         //Counts the Max number of Consecutive 1's in an array
@@ -94,5 +94,33 @@ namespace Leetcode
 
         #endregion
 
+    }
+
+    internal class Maths
+    {
+        public int[] TwoSum(int[] nums, int target)
+        {
+            // the easiest way you can probably find a solution to this, tho it will be O(n^2)
+            bool found = false;
+            List<int> result = new List<int>();
+            for(int i = 0; i < nums.Length; i++)
+            {
+
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    Console.WriteLine(nums[i] + " + " + nums[j] + " = " + (nums[i] + nums[j]));
+                    if (nums[i] + nums[j] == target)
+                    {
+                        result.Add(i);
+                        result.Add(j);
+                        found = true;
+                    }
+                }
+                if (found) break;
+            }
+
+            return result.ToArray();
+            
+        }
     }
 }

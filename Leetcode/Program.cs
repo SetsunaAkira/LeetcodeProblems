@@ -1,6 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Leetcode;
 
-Console.WriteLine("Hello, World!");
 
-Test test = new Test();
+Arrays test = new Arrays();
+Maths mathsTest = new Maths();
+
+int[] numbers = { 3,2,4 };
+
+mathsTest.TwoSum(numbers, 6);
