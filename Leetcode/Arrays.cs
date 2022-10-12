@@ -98,6 +98,7 @@ namespace Leetcode
 
     internal class Maths
     {
+        #region FIND THE 2 DIGIT SUM OF TARGET NUMBER
         public int[] TwoSum(int[] nums, int target)
         {
             // the easiest way you can probably find a solution to this, tho it will be O(n^2)
@@ -122,5 +123,6 @@ namespace Leetcode
             return result.ToArray();
             
         }
+        #endregion
     }
 }
