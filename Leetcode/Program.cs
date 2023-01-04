@@ -4,7 +4,11 @@ using Leetcode;
 
 Arrays test = new Arrays();
 Maths mathsTest = new Maths();
+DumbEnglish dumbEnglish = new DumbEnglish();
 
-int[] numbers = { 3,2,4 };
+int[] numbers = { 0,4,3,0 };
+string[] strs = { "flower", "flow", "flight" };
 
-mathsTest.TwoSum(numbers, 6);
+mathsTest.TwoSumOptimal(numbers, 0);
+//mathsTest.IsPalindrome(10);
+//dumbEnglish.LongestCommonPrefix(strs);

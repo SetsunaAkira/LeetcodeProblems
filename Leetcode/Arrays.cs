@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -123,6 +124,139 @@ namespace Leetcode
             return result.ToArray();
             
         }
+
+        public int[] TwoSumHash(int[] nums, int target)
+        {
+            //The hashmap Method of my creation, beats double for loop by 72 ms at the cost of 1.3 more MB
+            int[] result = new int[2];
+            Dictionary<int, int> hashmap = new Dictionary<int, int>();
+            bool foreachLooper = true;
+            for(int i = 0; i< nums.Length; i++)
+            {
+                hashmap.Add(i, nums[i]);
+            }
+
+            while (foreachLooper == true)
+            {
+                foreach (KeyValuePair<int, int> entry in hashmap)
+                {
+                    if (hashmap.ContainsKey(target - nums[entry.Key]) && entry.Key != entry.Value)
+                    {
+                        result[1] = entry.Key;
+                        result[0] = hashmap[target - nums[entry.Key]];
+                      
+                        if(result[0] >= 0 && result[0] < nums.Length)
+                        {
+                            if (nums[result[1]] + nums[result[0]] == target && result[0] != result[1])
+                            {
+                                foreachLooper = false;
+                                break;
+                            }
+                        }
+                    }
+                    if (hashmap.ContainsKey(nums[entry.Key]))
+                    {
+                        hashmap[nums[entry.Key]] = entry.Key;
+                    }
+                    else
+                    {
+                        hashmap[nums[entry.Key]] = entry.Key;
+                        break;
+                    }
+
+                }
+            }
+         
+            Console.WriteLine("[ " + result[0] + "," + result[1] + " ]");
+            return result;
+        }
+
+        public int[] TwoSumOptimal(int[] nums, int target)
+        {
+            //the answer with the fastest runtime submission
+            if (nums.Length != 2)
+            {
+                Dictionary<int, int> dictionary = new Dictionary<int, int>();
+
+                dictionary[nums[0]] = 0;
+                int x = 0;
+                while (true)
+                {
+                    x++;
+                    int num = nums[x];
+                    if (dictionary.ContainsKey(target - num)) return new int[] { dictionary[target - num], x };
+                    dictionary[num] = x;
+                    if (x == nums.Length - 2) return new int[] { dictionary[target - nums[nums.Length - 1]], nums.Length - 1 };
+                }
+            }
+
+            return new int[] { 0, 1 };
+        }
+
         #endregion
+
+        #region PALINDROME NUMBER
+
+        public bool IsPalindrome(int x)
+        {
+            char[] convert = x.ToString().ToCharArray();
+            Array.Reverse(convert);
+            string temp = new string(convert);
+            if (convert[convert.Length-1] !=  '-')
+            {
+                if (temp == x.ToString()) return true;
+                else return false;
+            }
+            else return false;
+
+            
+        }
+
+
+        #endregion
+    }
+
+    internal class DumbEnglish
+    {
+        public string LongestCommonPrefix(string[] strs)
+        {
+            char[] stringChar = strs[0].ToCharArray();
+            List<char> MasterChar = new List<char>();
+            List<char> currentChar = new List<char>();
+
+            for(int i = 1; i < 2; i++)
+            {
+                char[] temp = strs[i].ToCharArray();
+                currentChar.AddRange(temp);
+                
+                if(currentChar.Count < stringChar.Length)
+                {
+                    for(int j =0; j < currentChar.Count; j++)
+                    {
+                        if(currentChar[j] == stringChar[j])
+                        {
+                            MasterChar.Add(currentChar[j]);
+                        }
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < stringChar.Length; j++)
+                    {
+                        if (currentChar[j] == stringChar[j])
+                        {
+                            MasterChar.Add(currentChar[j]);
+                        }
+                    }
+                }
+
+            }
+
+           
+
+            return "fuck";
+        }
+
+
     }
 }
